@@ -1,4 +1,4 @@
-package com.micronext.zad
+package com.ecommercea.pp
 
 import io.flutter.embedding.android.FlutterActivity
 

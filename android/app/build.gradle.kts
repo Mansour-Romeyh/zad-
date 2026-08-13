@@ -27,7 +27,7 @@ if (file("google-services.json").exists()) {
 }
 
 android {
-    namespace = "com.micronext.zad"
+    namespace = "com.ecommercea.pp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.micronext.zad"
+        applicationId = "com.ecommercea.pp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
