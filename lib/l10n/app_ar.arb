@@ -1,0 +1,279 @@
+{
+  "@@locale": "ar",
+  "appTitle": "زاد",
+  "skip": "تخطي",
+  "onb1Title": "اشترِ مقاضيك بسهولة معنا",
+  "onb1Body": "اطلب مقاضيك الطازجة من هاتفك وتجنّب الطوابير.",
+  "onb2Title": "منتجات طازجة كل يوم",
+  "onb2Body": "فواكه وخضروات ومستلزمات يومية مختارة بعناية تصلك طازجة.",
+  "onb3Title": "أفضل العروض وتوصيل سريع",
+  "onb3Body": "استمتع بخصومات حصرية واستلم طلبك عند بابك خلال دقائق.",
+  "searchHint": "ابحث",
+  "shopByCategory": "تسوق حسب الفئة",
+  "seeAll": "عرض الكل",
+  "sortBy": "ترتيب حسب",
+  "sortDefault": "الافتراضي",
+  "sortPriceLowToHigh": "السعر: من الأقل إلى الأعلى",
+  "sortPriceHighToLow": "السعر: من الأعلى إلى الأقل",
+  "bestDeal": "أفضل العروض",
+  "bannerHeadline": "مهرجان الطعام العالمي، اجلب العالم إلى مطبخك!",
+  "shopNow": "تسوق الآن",
+  "add": "أضف",
+  "addedToBasket": "أُضيف إلى السلة",
+  "increaseQuantity": "زيادة الكمية",
+  "decreaseQuantity": "إنقاص الكمية",
+  "homeLabel": "المنزل",
+  "navHome": "الرئيسية",
+  "navFavorites": "المفضلة",
+  "navCart": "السلة",
+  "navProfile": "الملف الشخصي",
+  "addToFavorites": "أضف إلى المفضلة",
+  "next": "التالي",
+  "authLoginTitle": "تسجيل الدخول",
+  "authPhoneLabel": "رقم الهاتف",
+  "authPhoneHint": "7XX XXX XXXX",
+  "authPhoneInvalid": "أدخل رقم هاتف عراقي صحيح",
+  "authPasswordLabel": "كلمة المرور",
+  "authShowPassword": "إظهار كلمة المرور",
+  "authHidePassword": "إخفاء كلمة المرور",
+  "authLoginButton": "تسجيل الدخول",
+  "authNoAccount": "ليس لديك حساب؟",
+  "authRegisterLink": "إنشاء حساب",
+  "authForgotPassword": "نسيت كلمة المرور؟",
+  "authRegisterTitle": "إنشاء حساب جديد",
+  "authFullNameLabel": "الاسم الكامل",
+  "authSendOtpButton": "إرسال الرمز",
+  "authAlreadyHaveAccount": "لديك حساب بالفعل؟",
+  "authLoginLink": "تسجيل الدخول",
+  "authOtpTitle": "تأكيد رقم الهاتف",
+  "authOtpInstructions": "أدخل الرمز المكوّن من 4 أرقام المُرسل إلى {phone}",
+  "@authOtpInstructions": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "authOtpHint": "رمز مكوّن من 4 أرقام",
+  "authVerifyButton": "تحقق",
+  "authResendCode": "إعادة إرسال الرمز",
+  "authResendIn": "إعادة الإرسال خلال {seconds} ث",
+  "@authResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "authResetTitle": "إعادة تعيين كلمة المرور",
+  "authNewPasswordLabel": "كلمة المرور الجديدة",
+  "authResetSubmitButton": "إعادة تعيين كلمة المرور",
+  "authResetSuccess": "تمت إعادة تعيين كلمة المرور. الرجاء تسجيل الدخول.",
+  "authFieldRequired": "هذا الحقل مطلوب",
+  "authPasswordTooShort": "يجب أن تتكوّن كلمة المرور من 8 أحرف على الأقل",
+  "authLoginRequiredTitle": "سجّل الدخول للمتابعة",
+  "profileGuestTitle": "سجّل الدخول لعرض ملفك الشخصي",
+  "profileGreeting": "مرحباً، {name}",
+  "@profileGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileLogoutButton": "تسجيل الخروج",
+  "addressPlaceholder": "بغداد",
+  "outOfStock": "غير متوفر",
+  "inStock": "متوفر",
+  "retry": "إعادة المحاولة",
+  "sectionErrorMessage": "حدث خطأ ما",
+  "errorGeneric": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+  "errorNetwork": "لا يوجد اتصال بالإنترنت. تحقق من اتصالك وحاول مجدداً.",
+  "errorSessionExpired": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.",
+  "errorInvalidCredentials": "رقم الهاتف أو كلمة المرور غير صحيحة.",
+  "errorOutOfStock": "بعض المنتجات لم تعد متوفرة.",
+  "errorOutsideCoverage": "هذا العنوان خارج نطاق التوصيل.",
+  "errorStoreClosed": "عذراً، المتجر مغلق حالياً.",
+  "errorOtpExpired": "انتهت صلاحية الرمز. يرجى طلب رمز جديد.",
+  "errorOtpInvalid": "الرمز الذي أدخلته غير صحيح. حاول مرة أخرى.",
+  "errorNoAccountForPhone": "لا يوجد حساب مسجّل بهذا الرقم.",
+  "errorOtpCooldown": "يرجى الانتظار {seconds} ث قبل طلب رمز جديد.",
+  "@errorOtpCooldown": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "errorPhoneAlreadyRegistered": "رقم الهاتف هذا مسجّل بالفعل. يرجى تسجيل الدخول بدلاً من ذلك.",
+  "categoriesEmpty": "لا توجد فئات بعد",
+  "bestItemsEmpty": "لا توجد عناصر بعد",
+  "categoryItemsEmpty": "لا توجد عناصر في هذه الفئة بعد",
+  "unitGram": "غم",
+  "unitKg": "كغم",
+  "addToBasket": "أضف إلى السلة",
+  "addedToCart": "تمت الإضافة إلى السلة",
+  "searchRecentTitle": "عمليات البحث الأخيرة",
+  "searchTrendingTitle": "الرائج",
+  "searchClearAll": "مسح الكل",
+  "searchNoResults": "لا توجد نتائج لـ \"{query}\"",
+  "@searchNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "إلغاء",
+  "comingSoon": "قريباً",
+  "basketTitle": "السلة",
+  "basketEmptyTitle": "سلتك فارغة",
+  "basketCheckout": "إتمام الطلب",
+  "basketSubtotal": "المجموع الفرعي",
+  "basketTotal": "الإجمالي",
+  "basketClearAll": "مسح الكل",
+  "basketClearTitle": "إفراغ السلة؟",
+  "basketClearMessage": "سيؤدي هذا إلى إزالة جميع العناصر من سلتك.",
+  "basketRemoveItem": "إزالة العنصر",
+  "cartSyncFailed": "تعذر مزامنة السلة — ستتم إعادة المحاولة",
+  "favouritesTitle": "المفضلة",
+  "favouritesEmptyTitle": "لا توجد مفضلات",
+  "favouritesGuestTitle": "سجّل الدخول لعرض المفضلة",
+  "addressesTitle": "عناويني",
+  "addressesEmptyTitle": "لا توجد عناوين بعد",
+  "addressAdd": "إضافة عنوان",
+  "addressNewTitle": "عنوان جديد",
+  "addressEditTitle": "تعديل العنوان",
+  "addressLabelHome": "منزل",
+  "addressLabelWork": "عمل",
+  "addressLabelOther": "أخرى",
+  "addressLineLabel": "العنوان التفصيلي — اختياري (الشارع، البناية...)",
+  "addressCityLabel": "المدينة — اختياري",
+  "addressUseCurrentLocation": "استخدام موقعي الحالي",
+  "addressLocationCaptured": "تم تحديد الموقع",
+  "addressLocationDenied": "تم رفض إذن الموقع — يمكنك إدخال العنوان يدوياً.",
+  "addressLocationDeniedForever": "إذن الموقع محظور — فعّل الموقع من إعدادات النظام، أو أدخل العنوان يدوياً.",
+  "addressLocationUnavailable": "تعذر الحصول على موقعك — يمكنك إدخال العنوان يدوياً.",
+  "addressZoneCovered": "ضمن منطقة التوصيل: {zone}",
+  "@addressZoneCovered": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
+  "addressOutsideCoverage": "هذا العنوان خارج نطاق التغطية. تم حفظه، لكن التوصيل إليه غير متاح حالياً.",
+  "addressSaved": "تم حفظ العنوان",
+  "addressDefaultBadge": "افتراضي",
+  "addressSetDefault": "تعيين كافتراضي",
+  "addressDeleteTitle": "حذف العنوان؟",
+  "addressDeleteMessage": "سيتم حذف هذا العنوان.",
+  "addressDelete": "حذف",
+  "addressSave": "حفظ",
+  "addressSelectPrompt": "اختر عنوان التوصيل",
+  "addressNudgeTitle": "أضف عنوان التوصيل",
+  "addressNudgeBody": "احفظ عنوانك ليصل طلبك إلى باب بيتك.",
+  "addressNudgeSkip": "ليس الآن",
+  "checkoutDeliveryAddress": "عنوان التوصيل",
+  "checkoutManageAddresses": "إضافة أو تعديل العناوين",
+  "checkoutNoAddressTitle": "لا يوجد عنوان توصيل بعد — أضف عنواناً لإتمام طلبك.",
+  "checkoutOrderSummary": "ملخص الطلب",
+  "checkoutDelivery": "التوصيل",
+  "checkoutDeliveryFree": "مجاني",
+  "checkoutPaymentMethod": "طريقة الدفع",
+  "checkoutCashOnDelivery": "الدفع عند الاستلام",
+  "checkoutPlaceOrder": "تأكيد الطلب",
+  "checkoutConfirmingTitle": "جارٍ تأكيد طلبك…",
+  "checkoutConfirmingSubtitle": "يمكنك الإلغاء والتعديل خلال هذه المدة.",
+  "checkoutSendingIn": "الإرسال خلال {seconds} ثانية",
+  "checkoutSendNow": "أرسل الآن",
+  "checkoutCancelAndEdit": "إلغاء وتعديل",
+  "checkoutStoreClosed": "المتجر مغلق حالياً. يرجى المحاولة خلال ساعات العمل.",
+  "checkoutStoreClosedHours": "المتجر مغلق حالياً. ساعات العمل: {open}–{close}",
+  "checkoutOutOfStockTitle": "بعض العناصر غير متوفرة",
+  "checkoutOutOfStockMessage": "هذه العناصر لم تعد متوفرة بالكمية المطلوبة:",
+  "checkoutRefreshBasket": "تحديث السلة",
+  "checkoutOutsideCoverageTitle": "خارج نطاق التوصيل",
+  "checkoutOutsideCoverageMessage": "هذا العنوان خارج نطاق التغطية أو بدون موقع محدد على الخريطة. اختر عنواناً آخر، أو حدّد موقع العنوان من دفتر عناوينك.",
+  "checkoutGoToAddresses": "إدارة العناوين",
+  "orderSuccessTitle": "تم استلام طلبك!",
+  "orderSuccessNumber": "رقم الطلب: {number}",
+  "@orderSuccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "orderSuccessViewOrders": "طلباتي",
+  "orderSuccessGoHome": "العودة إلى الرئيسية",
+  "ordersTitle": "طلباتي",
+  "ordersEmptyTitle": "لا توجد طلبات بعد",
+  "ordersItemCount": "{count, plural, =0{لا منتجات} =1{منتج واحد} =2{منتجان} few{{count} منتجات} many{{count} منتجاً} other{{count} منتج}}",
+  "@ordersItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "orderDetailTitle": "تفاصيل الطلب",
+  "orderStatusTimelineTitle": "حالة الطلب",
+  "orderItemsTitle": "المنتجات",
+  "orderChangesTitle": "تعديلات الطلب",
+  "orderAdjustedBadge": "تم التعديل",
+  "orderEstimatedQty": "المقدّر: {qty}",
+  "@orderEstimatedQty": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "orderActualQty": "الفعلي: {qty}",
+  "@orderActualQty": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "orderStatusPendingAssignment": "بانتظار التجهيز",
+  "orderStatusAssigned": "تم الإسناد",
+  "orderStatusPicking": "قيد التجهيز",
+  "orderStatusPicked": "تم التجهيز",
+  "orderStatusReadyForDelivery": "جاهز للتوصيل",
+  "orderStatusOutForDelivery": "قيد التوصيل",
+  "orderStatusDelivered": "تم التوصيل",
+  "orderStatusExpired": "منتهي الصلاحية",
+  "orderStatusCancelled": "ملغي",
+  "changePasswordTitle": "تغيير كلمة المرور",
+  "changePasswordOldLabel": "كلمة المرور الحالية",
+  "changePasswordSubmit": "حفظ كلمة المرور الجديدة",
+  "changePasswordSuccess": "تم تغيير كلمة المرور",
+  "changePasswordWrongOld": "كلمة المرور الحالية غير صحيحة",
+  "profileTermsTitle": "الشروط والأحكام",
+  "profilePrivacyTitle": "سياسة الخصوصية",
+  "supportTitle": "الدعم",
+  "supportCopy": "نسخ الرقم",
+  "supportCall": "اتصال",
+  "supportWhatsapp": "واتساب",
+  "supportPhoneCopied": "تم نسخ رقم الهاتف",
+  "supportUnavailable": "جهة اتصال الدعم غير متاحة حالياً",
+  "close": "إغلاق",
+  "profileLogoutConfirmTitle": "تسجيل الخروج؟",
+  "profileLogoutConfirmMessage": "ستحتاج إلى تسجيل الدخول مجدداً للوصول إلى حسابك.",
+  "notificationsTitle": "الإشعارات",
+  "notificationsEmptyTitle": "لا توجد إشعارات بعد",
+  "maintenanceTitle": "سنعود قريباً",
+  "maintenanceBody": "التطبيق قيد الصيانة حالياً. يرجى المحاولة مرة أخرى بعد قليل.",
+  "languageTitle": "اللغة",
+  "languageArabic": "العربية",
+  "languageEnglish": "English",
+  "profileOrderSoundLabel": "صوت تأكيد الطلب",
+  "deleteAccountTitle": "حذف الحساب",
+  "deleteAccountWarning": "سيتم تعطيل حسابك فوراً وحذف بياناتك الشخصية بعد ٣٠ يوماً. تبقى طلباتك السابقة محفوظة. لا يمكن التراجع عن هذا الإجراء.",
+  "deleteAccountConfirmCheckbox": "أفهم أنه سيتم حذف حسابي نهائياً",
+  "deleteAccountButton": "حذف الحساب",
+  "deleteAccountSuccess": "تمت جدولة حذف حسابك"
+}

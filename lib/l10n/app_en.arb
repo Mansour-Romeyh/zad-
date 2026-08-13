@@ -1,0 +1,296 @@
+{
+  "@@locale": "en",
+  "appTitle": "Zad",
+  "skip": "Skip",
+  "onb1Title": "Buy Groceries Easily with Us",
+  "onb1Body": "Order fresh groceries from your phone and skip the queue.",
+  "onb2Title": "Fresh Products Every Day",
+  "onb2Body": "Hand-picked fruits, vegetables and daily essentials delivered fresh.",
+  "onb3Title": "Best Deals, Fast Delivery",
+  "onb3Body": "Enjoy exclusive discounts and get your order at your door in minutes.",
+  "searchHint": "Search",
+  "shopByCategory": "Shop By Category",
+  "seeAll": "See All",
+  "sortBy": "Sort By",
+  "sortDefault": "Default",
+  "sortPriceLowToHigh": "Price: Low to High",
+  "sortPriceHighToLow": "Price: High to Low",
+  "bestDeal": "Best Deal",
+  "bannerHeadline": "World Food Festival, Bring the world to your Kitchen!",
+  "shopNow": "Shop Now",
+  "add": "Add",
+  "addedToBasket": "Added to basket",
+  "increaseQuantity": "Increase quantity",
+  "decreaseQuantity": "Decrease quantity",
+  "homeLabel": "Home",
+  "navHome": "Home",
+  "navFavorites": "Favorites",
+  "navCart": "Cart",
+  "navProfile": "Profile",
+  "addToFavorites": "Add to favorites",
+  "next": "Next",
+  "authLoginTitle": "Login",
+  "authPhoneLabel": "Phone Number",
+  "authPhoneHint": "7XX XXX XXXX",
+  "authPhoneInvalid": "Enter a valid Iraqi phone number",
+  "authPasswordLabel": "Password",
+  "authShowPassword": "Show password",
+  "authHidePassword": "Hide password",
+  "authLoginButton": "Login",
+  "authNoAccount": "Don't have an account?",
+  "authRegisterLink": "Register",
+  "authForgotPassword": "Forgot Password?",
+  "authRegisterTitle": "Create Account",
+  "authFullNameLabel": "Full Name",
+  "authSendOtpButton": "Send Code",
+  "authAlreadyHaveAccount": "Already have an account?",
+  "authLoginLink": "Login",
+  "authOtpTitle": "Verify Phone Number",
+  "authOtpInstructions": "Enter the 4-digit code sent to {phone}",
+  "@authOtpInstructions": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "authOtpHint": "4-digit code",
+  "authVerifyButton": "Verify",
+  "authResendCode": "Resend Code",
+  "authResendIn": "Resend in {seconds}s",
+  "@authResendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "authResetTitle": "Reset Password",
+  "authNewPasswordLabel": "New Password",
+  "authResetSubmitButton": "Reset Password",
+  "authResetSuccess": "Password reset. Please log in.",
+  "authFieldRequired": "This field is required",
+  "authPasswordTooShort": "Password must be at least 8 characters",
+  "authLoginRequiredTitle": "Log in to continue",
+  "profileGuestTitle": "Log in to view your profile",
+  "profileGreeting": "Hello, {name}",
+  "@profileGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileLogoutButton": "Log out",
+  "addressPlaceholder": "Baghdad",
+  "outOfStock": "Out of Stock",
+  "inStock": "In Stock",
+  "retry": "Retry",
+  "sectionErrorMessage": "Something went wrong",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorNetwork": "No internet connection. Please check and try again.",
+  "errorSessionExpired": "Your session has expired. Please sign in again.",
+  "errorInvalidCredentials": "Incorrect phone number or password.",
+  "errorOutOfStock": "Some items are no longer available.",
+  "errorOutsideCoverage": "This address is outside our delivery area.",
+  "errorStoreClosed": "Sorry, the store is currently closed.",
+  "errorOtpExpired": "Your code has expired. Please request a new one.",
+  "errorOtpInvalid": "The code you entered is incorrect. Please try again.",
+  "errorNoAccountForPhone": "No account is registered with this phone number.",
+  "errorOtpCooldown": "Please wait {seconds}s before requesting a new code.",
+  "errorPhoneAlreadyRegistered": "This phone number is already registered. Please log in instead.",
+  "@errorOtpCooldown": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "categoriesEmpty": "No categories yet",
+  "bestItemsEmpty": "No items yet",
+  "categoryItemsEmpty": "No items in this category yet",
+  "unitGram": "g",
+  "unitKg": "kg",
+  "addToBasket": "Add to Basket",
+  "addedToCart": "Added to cart",
+  "searchRecentTitle": "Recent Searches",
+  "searchTrendingTitle": "Trending",
+  "searchClearAll": "Clear All",
+  "searchNoResults": "No results for \"{query}\"",
+  "@searchNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "comingSoon": "Coming soon",
+  "basketTitle": "Basket",
+  "basketEmptyTitle": "Your basket is empty",
+  "basketCheckout": "Checkout",
+  "basketSubtotal": "Subtotal",
+  "basketTotal": "Total",
+  "basketClearAll": "Clear All",
+  "basketClearTitle": "Clear basket?",
+  "basketClearMessage": "This will remove all items from your basket.",
+  "basketRemoveItem": "Remove item",
+  "cartSyncFailed": "Couldn't sync your basket — will retry.",
+  "favouritesTitle": "Favorites",
+  "favouritesEmptyTitle": "No favorites yet",
+  "favouritesGuestTitle": "Log in to view your favorites",
+  "addressesTitle": "My Addresses",
+  "addressesEmptyTitle": "No addresses yet",
+  "addressAdd": "Add Address",
+  "addressNewTitle": "New Address",
+  "addressEditTitle": "Edit Address",
+  "addressLabelHome": "Home",
+  "addressLabelWork": "Work",
+  "addressLabelOther": "Other",
+  "addressLineLabel": "Address line — optional (street, building...)",
+  "addressCityLabel": "City — optional",
+  "addressUseCurrentLocation": "Use my current location",
+  "addressLocationCaptured": "Location captured",
+  "addressLocationDenied": "Location permission denied — you can enter the address manually.",
+  "addressLocationDeniedForever": "Location permission is blocked — enable it in your system settings, or enter the address manually.",
+  "addressLocationUnavailable": "Couldn't get your location — you can enter the address manually.",
+  "addressZoneCovered": "Within delivery zone: {zone}",
+  "@addressZoneCovered": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
+  "addressOutsideCoverage": "This address is outside our delivery coverage. It was saved, but delivery isn't available for it yet.",
+  "addressSaved": "Address saved",
+  "addressDefaultBadge": "Default",
+  "addressSetDefault": "Set as default",
+  "addressDeleteTitle": "Delete address?",
+  "addressDeleteMessage": "This address will be removed.",
+  "addressDelete": "Delete",
+  "addressSave": "Save",
+  "addressSelectPrompt": "Select your delivery address",
+  "addressNudgeTitle": "Add your delivery address",
+  "addressNudgeBody": "Save an address so we can deliver your order to your door.",
+  "addressNudgeSkip": "Not now",
+  "checkoutDeliveryAddress": "Delivery Address",
+  "checkoutManageAddresses": "Add or edit addresses",
+  "checkoutNoAddressTitle": "No delivery address yet — add one to place your order.",
+  "checkoutOrderSummary": "Order Summary",
+  "checkoutDelivery": "Delivery",
+  "checkoutDeliveryFree": "Free",
+  "checkoutPaymentMethod": "Payment Method",
+  "checkoutCashOnDelivery": "Cash on Delivery",
+  "checkoutPlaceOrder": "Place Order",
+  "checkoutConfirmingTitle": "Confirming your order…",
+  "checkoutConfirmingSubtitle": "You can still cancel and edit.",
+  "checkoutSendingIn": "Sending in {seconds}s",
+  "@checkoutSendingIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "checkoutSendNow": "Send now",
+  "checkoutCancelAndEdit": "Cancel & edit",
+  "checkoutStoreClosed": "The store is currently closed. Please try again during working hours.",
+  "checkoutStoreClosedHours": "The store is currently closed. Working hours: {open}–{close}",
+  "@checkoutStoreClosedHours": {
+    "placeholders": {
+      "open": {
+        "type": "String"
+      },
+      "close": {
+        "type": "String"
+      }
+    }
+  },
+  "checkoutOutOfStockTitle": "Some items are unavailable",
+  "checkoutOutOfStockMessage": "These items are no longer available in the requested quantity:",
+  "checkoutRefreshBasket": "Refresh Basket",
+  "checkoutOutsideCoverageTitle": "Outside delivery coverage",
+  "checkoutOutsideCoverageMessage": "This address is outside our delivery coverage or has no location pin. Choose a different address, or set this address's location from your address book.",
+  "checkoutGoToAddresses": "Manage Addresses",
+  "orderSuccessTitle": "Your order has been placed!",
+  "orderSuccessNumber": "Order number: {number}",
+  "@orderSuccessNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "orderSuccessViewOrders": "My Orders",
+  "orderSuccessGoHome": "Back to Home",
+  "ordersTitle": "My Orders",
+  "ordersEmptyTitle": "No orders yet",
+  "ordersItemCount": "{count, plural, =1{1 item} other{{count} items}}",
+  "@ordersItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "orderDetailTitle": "Order Details",
+  "orderStatusTimelineTitle": "Order Status",
+  "orderItemsTitle": "Items",
+  "orderChangesTitle": "Order Changes",
+  "orderAdjustedBadge": "Adjusted",
+  "orderEstimatedQty": "Estimated: {qty}",
+  "@orderEstimatedQty": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "orderActualQty": "Actual: {qty}",
+  "@orderActualQty": {
+    "placeholders": {
+      "qty": {
+        "type": "String"
+      }
+    }
+  },
+  "orderStatusPendingAssignment": "Pending Assignment",
+  "orderStatusAssigned": "Assigned",
+  "orderStatusPicking": "Picking",
+  "orderStatusPicked": "Picked",
+  "orderStatusReadyForDelivery": "Ready for Delivery",
+  "orderStatusOutForDelivery": "Out for Delivery",
+  "orderStatusDelivered": "Delivered",
+  "orderStatusExpired": "Expired",
+  "orderStatusCancelled": "Cancelled",
+  "changePasswordTitle": "Change Password",
+  "changePasswordOldLabel": "Current Password",
+  "changePasswordSubmit": "Save New Password",
+  "changePasswordSuccess": "Password changed",
+  "changePasswordWrongOld": "Current password is incorrect",
+  "profileTermsTitle": "Terms & Conditions",
+  "profilePrivacyTitle": "Privacy Policy",
+  "supportTitle": "Support",
+  "supportCopy": "Copy number",
+  "supportCall": "Call",
+  "supportWhatsapp": "WhatsApp",
+  "supportPhoneCopied": "Phone number copied",
+  "supportUnavailable": "Support contact is currently unavailable",
+  "close": "Close",
+  "profileLogoutConfirmTitle": "Log out?",
+  "profileLogoutConfirmMessage": "You will need to log in again to access your account.",
+  "notificationsTitle": "Notifications",
+  "notificationsEmptyTitle": "No notifications yet",
+  "maintenanceTitle": "We'll be back soon",
+  "maintenanceBody": "The app is under maintenance right now. Please try again in a little while.",
+  "languageTitle": "Language",
+  "languageArabic": "العربية",
+  "languageEnglish": "English",
+  "profileOrderSoundLabel": "Order confirmation sound",
+  "deleteAccountTitle": "Delete account",
+  "deleteAccountWarning": "Your account will be disabled immediately and your personal data removed after 30 days. Your past orders are kept. This cannot be undone.",
+  "deleteAccountConfirmCheckbox": "I understand my account will be permanently deleted",
+  "deleteAccountButton": "Delete account",
+  "deleteAccountSuccess": "Your account is scheduled for deletion"
+}
