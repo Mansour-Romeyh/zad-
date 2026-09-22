@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:iconsax/iconsax.dart';
@@ -33,15 +34,18 @@ void main() {
     expect(find.byType(Image), findsNothing);
   });
 
-  testWidgets('builds an Image when imageUrl is provided', (tester) async {
+  testWidgets('builds a cached network image when imageUrl is provided',
+      (tester) async {
     await tester.pumpWidget(
       wrapPage(
         const Scaffold(body: CategoryTile(imageUrl: 'https://example.test/x.png')),
       ),
     );
 
-    // The Image widget is built (its network load fails harmlessly in tests).
-    expect(find.byType(Image), findsOneWidget);
+    // RemoteImage now renders a disk-cached, downsized CachedNetworkImage
+    // (its network load fails harmlessly in tests, falling back to the
+    // placeholder builder).
+    expect(find.byType(CachedNetworkImage), findsOneWidget);
   });
 
   testWidgets('applies the given fill color and border', (tester) async {

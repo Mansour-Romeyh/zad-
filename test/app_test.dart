@@ -53,7 +53,16 @@ void main() {
         ['/auth/login', '/auth/register', '/auth/reset', '/categories', '/best-deals'],
       ),
     );
-    expect(find.text('Zad'), findsOneWidget); // brand wordmark, not localized
+    // Bundled full-screen splash artwork (no backend config override).
+    expect(
+      find.byWidgetPredicate(
+        (w) =>
+            w is Image &&
+            w.image is AssetImage &&
+            (w.image as AssetImage).assetName == 'assets/images/splash.jpg',
+      ),
+      findsOneWidget,
+    );
     await tester.pump(kSplashDuration);
     await tester.pumpAndSettle();
     expect(find.text('ابحث'), findsOneWidget); // home search hint

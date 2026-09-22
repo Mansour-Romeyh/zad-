@@ -11,7 +11,17 @@ abstract class SecureStorage {
 /// Default [SecureStorage] backed by the `flutter_secure_storage` plugin.
 class FlutterSecureStorageAdapter implements SecureStorage {
   FlutterSecureStorageAdapter([FlutterSecureStorage? storage])
-    : _storage = storage ?? const FlutterSecureStorage();
+    : _storage =
+          storage ??
+          const FlutterSecureStorage(
+            // Keep the credential out of iCloud/iTunes encrypted backups and
+            // off any restored second device — mirrors the Android
+            // allowBackup="false" hardening (the default
+            // `whenUnlocked` accessibility IS included in backups).
+            iOptions: IOSOptions(
+              accessibility: KeychainAccessibility.first_unlock_this_device,
+            ),
+          );
 
   final FlutterSecureStorage _storage;
 

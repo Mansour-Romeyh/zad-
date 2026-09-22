@@ -34,7 +34,7 @@ ApiClient _client() => ApiClient(
               },
             ],
             'page': 1,
-            'has_more': true,
+            'has_more': false,
           });
         }
         return _envelope(options, <dynamic>[]);
@@ -53,7 +53,6 @@ Widget _app() {
     ),
     routes: {
       '/categories': (_) => const Scaffold(body: Text('CATEGORIES_MARKER')),
-      '/best-deals': (_) => const Scaffold(body: Text('BEST_DEALS_MARKER')),
     },
   );
 }
@@ -66,22 +65,13 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('See All').first);
+    await tester.tap(find.text('See All'));
     await tester.pumpAndSettle();
 
     expect(find.text('CATEGORIES_MARKER'), findsOneWidget);
   });
 
-  testWidgets('Best Deal See All opens the best deals page', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(390, 1700));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-
-    await tester.pumpWidget(_app());
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('See All').last);
-    await tester.pumpAndSettle();
-
-    expect(find.text('BEST_DEALS_MARKER'), findsOneWidget);
-  });
+  // The "Best Deal" section no longer has a See All — it lays out every
+  // best-deal item as a downward grid — so Shop By Category is now the only
+  // See All on the home screen (asserted above via a bare `find.text`).
 }

@@ -224,6 +224,7 @@ class _BasketLineTile extends StatelessWidget {
                 height: 64,
                 child: RemoteImage(
                   url: line.imageUrl,
+                  fit: BoxFit.cover,
                   placeholder: const Icon(Iconsax.gallery, color: ZadColors.muted),
                 ),
               ),

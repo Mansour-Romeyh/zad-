@@ -20,6 +20,14 @@ import '../helpers.dart';
 import '../support/fake_dio.dart';
 import '../support/fake_secure_storage.dart';
 
+/// The bundled full-screen splash artwork (default, no config override).
+final _splashImage = find.byWidgetPredicate(
+  (w) =>
+      w is Image &&
+      w.image is AssetImage &&
+      (w.image as AssetImage).assetName == 'assets/images/splash.jpg',
+);
+
 Widget _app(
   SessionStore store, {
   ContentRepository? contentRepository,
@@ -59,11 +67,11 @@ Widget _app(
 }
 
 void main() {
-  testWidgets('shows wordmark, first launch goes to onboarding',
+  testWidgets('shows splash artwork, first launch goes to onboarding',
       (tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.pumpWidget(_app(buildGuestSessionStore()));
-    expect(find.text('Zad'), findsOneWidget);
+    expect(_splashImage, findsOneWidget);
     await tester.pump(kSplashDuration);
     await tester.pumpAndSettle();
     expect(find.text('ONBOARDING_MARKER'), findsOneWidget);

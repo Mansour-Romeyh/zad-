@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const expectedImages = <String>[
+  'assets/images/splash.jpg',
   'assets/images/produce_spread.png',
   'assets/images/onboarding_delivery.png',
   'assets/images/cat_vegetables_fruits.png',

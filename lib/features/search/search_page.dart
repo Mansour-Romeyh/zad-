@@ -507,7 +507,7 @@ class _ResultsGrid extends StatelessWidget {
         // Room for the floating basket button when it shows, so the last row
         // isn't hidden behind it.
         SliverToBoxAdapter(
-          child: SizedBox(height: 12 + cartFabClearanceOf(context)),
+          child: const CartFabClearance(extra: 12),
         ),
       ],
     );

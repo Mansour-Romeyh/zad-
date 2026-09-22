@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zad/core/services/url_opener.dart';
 import 'package:zad/features/category/category_browser_page.dart';
 import 'package:zad/features/home/widgets/promo_banner.dart';
+import 'package:zad/features/product/banner_items_page.dart';
 import 'package:zad/l10n/app_localizations.dart';
 import 'package:zad/models/app_banner.dart';
 
@@ -68,9 +69,11 @@ void main() {
     Widget stub(String label) => Builder(
           builder: (context) {
             final args = ModalRoute.of(context)!.settings.arguments;
-            final detail = args is CategoryBrowserArgs
-                ? args.initialGroupId
-                : args?.toString();
+            final detail = switch (args) {
+              CategoryBrowserArgs a => a.initialGroupId,
+              BannerItemsArgs a => '${a.title}|${a.itemCodes.join(",")}',
+              _ => args?.toString(),
+            };
             return Scaffold(body: Text('$label:$detail'));
           },
         );
@@ -86,6 +89,7 @@ void main() {
         routes: {
           '/product': (_) => stub('product'),
           '/categories': (_) => stub('categories'),
+          '/banner-items': (_) => stub('banner-items'),
         },
       ),
     );
@@ -118,6 +122,24 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('categories:Products'), findsOneWidget);
+  });
+
+  testWidgets(
+      'tapping an Items banner routes to /banner-items with codes and title',
+      (tester) async {
+    await tester.pumpWidget(linkedBannerApp(
+      const AppBannerModel(
+        title: 'Ramadan Picks',
+        linkType: 'Items',
+        linkItems: ['A', 'B', 'C'],
+      ),
+    ));
+    await tester.pump();
+
+    await tester.tap(find.byType(PromoBanner));
+    await tester.pumpAndSettle();
+
+    expect(find.text('banner-items:Ramadan Picks|A,B,C'), findsOneWidget);
   });
 
   testWidgets('tapping a URL banner hands the url to UrlOpener', (tester) async {

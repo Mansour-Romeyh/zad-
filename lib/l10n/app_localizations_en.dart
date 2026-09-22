@@ -271,6 +271,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get categoryItemsEmpty => 'No items in this category yet';
 
   @override
+  String get bannerItemsTitle => 'Products';
+
+  @override
+  String get bannerItemsEmpty => 'These items aren\'t available right now';
+
+  @override
   String get unitGram => 'g';
 
   @override

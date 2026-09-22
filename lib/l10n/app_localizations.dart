@@ -584,6 +584,18 @@ abstract class AppLocalizations {
   /// **'No items in this category yet'**
   String get categoryItemsEmpty;
 
+  /// No description provided for @bannerItemsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Products'**
+  String get bannerItemsTitle;
+
+  /// No description provided for @bannerItemsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'These items aren\'t available right now'**
+  String get bannerItemsEmpty;
+
   /// No description provided for @unitGram.
   ///
   /// In en, this message translates to:

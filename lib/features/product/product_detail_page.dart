@@ -193,18 +193,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         children: [
           AspectRatio(
             aspectRatio: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: ZadColors.surface,
-                borderRadius: BorderRadius.circular(ZadRadii.tile),
-              ),
-              padding: const EdgeInsets.all(28),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(ZadRadii.tile),
               child: RemoteImage(
                 url: product.imageUrl,
-                placeholder: const Icon(
-                  Iconsax.gallery,
-                  color: ZadColors.muted,
-                  size: 56,
+                fit: BoxFit.cover,
+                placeholder: const ColoredBox(
+                  color: ZadColors.surface,
+                  child: Center(
+                    child: Icon(
+                      Iconsax.gallery,
+                      color: ZadColors.muted,
+                      size: 56,
+                    ),
+                  ),
                 ),
               ),
             ),

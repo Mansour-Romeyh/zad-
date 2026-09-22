@@ -4,13 +4,25 @@ import '../../../core/theme.dart';
 import '../../../l10n/app_localizations.dart';
 
 class SectionHeader extends StatelessWidget {
-  const SectionHeader({required this.title, this.onSeeAll, super.key});
+  const SectionHeader({
+    required this.title,
+    this.onSeeAll,
+    this.titleFontSize = 18,
+    this.titleFontWeight = FontWeight.w600,
+    super.key,
+  });
 
   final String title;
 
   /// Opens the section's full listing. When null the "See All" label is
   /// omitted entirely — never a visible label that does nothing.
   final VoidCallback? onSeeAll;
+
+  /// Font size for the section title. Defaults to the standard 18.
+  final double titleFontSize;
+
+  /// Font weight for the section title. Defaults to semibold (w600).
+  final FontWeight titleFontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +33,9 @@ class SectionHeader extends StatelessWidget {
           child: Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+            style: TextStyle(
+              fontSize: titleFontSize,
+              fontWeight: titleFontWeight,
               color: ZadColors.ink,
             ),
           ),

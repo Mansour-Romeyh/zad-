@@ -66,36 +66,26 @@ class _SplashPageState extends State<SplashPage> {
     } catch (_) {
       // Storage unavailable: showing onboarding again is benign.
     }
-    if (mounted) {
-      // Resolve any saved session before routing, so the first screen the
-      // user lands on already knows whether they're a guest or authed.
-      await context.read<SessionStore>().restore();
-    }
-    if (mounted) {
-      // Loads the guest local cart (or the server cart if already authed)
-      // now that the session status is known — CartStore's own
-      // login/logout listener handles later transitions.
-      await context.read<CartStore>().restore();
-    }
-    if (mounted) {
-      // Hydrates the wishlist for an already-authed session (no-op for
-      // guests) — FavouritesStore's own login/logout listener handles
-      // later transitions. Never throws; an offline boot retries on the
-      // next favourites-tab activation.
-      await context.read<FavouritesStore>().restore();
-    }
-    if (mounted) {
-      // Hydrates the address book for an already-authed session (no-op
-      // for guests) so the home header shows the default address on first
-      // paint and the no-address nudge (PRD A3) can fire. Never throws.
-      await context.read<AddressStore>().restore();
-    }
-    if (mounted) {
-      // Hydrates the unread badge for an already-authed session (no-op
-      // for guests) so the home bell is correct on first paint. Never
-      // throws.
-      await context.read<NotificationsStore>().restore();
-    }
+    if (!mounted) return;
+    // Resolve any saved session before routing, so the first screen the user
+    // lands on already knows whether they're a guest or authed.
+    await context.read<SessionStore>().restore();
+    if (!mounted) return;
+    // The remaining hydrations depend on the resolved session but not on each
+    // other, so run them concurrently — boot then waits on the slowest call,
+    // not the sum of four round-trips. All four are documented "never throws",
+    // so Future.wait won't reject:
+    //  - CartStore: guest local cart or the authed server cart.
+    //  - FavouritesStore: wishlist for an authed session (no-op for guests).
+    //  - AddressStore: address book, so the home header + no-address nudge
+    //    (PRD A3) are correct on first paint.
+    //  - NotificationsStore: unread badge for the home bell.
+    await Future.wait([
+      context.read<CartStore>().restore(),
+      context.read<FavouritesStore>().restore(),
+      context.read<AddressStore>().restore(),
+      context.read<NotificationsStore>().restore(),
+    ]);
     if (!mounted) return;
     Navigator.pushReplacementNamed(context, done ? '/home' : '/onboarding');
   }
@@ -111,46 +101,64 @@ class _SplashPageState extends State<SplashPage> {
     return parsed == null ? Colors.white : Color(parsed);
   }
 
+  /// Brand wordmark — the placeholder/fallback for a config-driven remote
+  /// splash image. Intentionally not localized.
+  static const Widget _wordmark = Text(
+    'Zad',
+    style: TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 56,
+      fontWeight: FontWeight.w700,
+      color: ZadColors.primary,
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     final config = context.watch<AppConfigStore>().config;
-    const wordmark = Text(
-      'Zad', // brand wordmark — intentionally not localized
-      style: TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 56,
-        fontWeight: FontWeight.w700,
-        color: ZadColors.primary,
-      ),
-    );
-    return Scaffold(
-      backgroundColor: _splashBackground(config.splashBgColor),
-      body: Stack(
-        children: [
-          Center(
-            // Config splash image when the backend provides one; the
-            // bundled wordmark is both the fallback and the placeholder
-            // while (or in case) the remote image can't load.
-            child: config.splashImage == null || config.splashImage!.isEmpty
-                ? wordmark
-                : SizedBox(
-                    width: 220,
-                    height: 220,
-                    child: RemoteImage(
-                      url: config.splashImage,
-                      placeholder: Center(child: wordmark),
-                    ),
-                  ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              'assets/images/produce_spread.png',
-              width: double.infinity,
-              fit: BoxFit.fitWidth,
+    final remote = config.splashImage;
+
+    // Backend takeover (PRD D1.1): a config-supplied splash image still wins —
+    // shown centered on the config background with the wordmark as its
+    // placeholder/fallback while (or in case) the remote image can't load.
+    if (remote != null && remote.isNotEmpty) {
+      return Scaffold(
+        backgroundColor: _splashBackground(config.splashBgColor),
+        body: Center(
+          child: SizedBox(
+            width: 220,
+            height: 220,
+            child: RemoteImage(
+              url: remote,
+              placeholder: const Center(child: _wordmark),
             ),
           ),
-        ],
+        ),
+      );
+    }
+
+    // Bundled default: the full-screen brand artwork. Its 738×1600 (~19.5:9)
+    // source matches most modern phones edge-to-edge; on other aspect ratios
+    // `BoxFit.contain` letterboxes rather than crop, so the feature badges are
+    // never cut off. The white→cream gradient is sampled from the art's own
+    // top/bottom edges, so the bars blend into the image. `splash_bg_color`
+    // stays honored as the scaffold base for the config contract.
+    return Scaffold(
+      backgroundColor: _splashBackground(config.splashBgColor),
+      body: const DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFFEFEFE), Color(0xFFEAF2DB)],
+          ),
+        ),
+        child: SizedBox.expand(
+          child: Image(
+            image: AssetImage('assets/images/splash.jpg'),
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }

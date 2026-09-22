@@ -26,5 +26,21 @@ void main() {
     expect(banner.title, '');
     expect(banner.linkType, isNull);
     expect(banner.linkValue, isNull);
+    expect(banner.linkItems, isEmpty);
+  });
+
+  test('fromJson parses and cleans link_items for an Items banner', () {
+    final banner = AppBannerModel.fromJson({
+      'title': 'Picks',
+      'link_type': 'Items',
+      'link_items': ['ITEM-A', '  ITEM-B  ', '', 'ITEM-C'],
+    });
+
+    expect(banner.linkItems, ['ITEM-A', 'ITEM-B', 'ITEM-C']);
+  });
+
+  test('fromJson defaults link_items to empty when missing or not a list', () {
+    expect(AppBannerModel.fromJson({}).linkItems, isEmpty);
+    expect(AppBannerModel.fromJson({'link_items': 'nope'}).linkItems, isEmpty);
   });
 }

@@ -46,7 +46,11 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final languageCode = Localizations.localeOf(context).languageCode;
-    final isFavourite = context.watch<FavouritesStore>().contains(_itemKey);
+    // `select` (not `watch`) so a card rebuilds only when ITS OWN favourite
+    // bit flips — not on every FavouritesStore.notifyListeners() (which fires
+    // on every page load's seed(), rebuilding all visible cards otherwise).
+    final isFavourite =
+        context.select<FavouritesStore, bool>((s) => s.contains(_itemKey));
     final inStock = product.inStock;
 
     final card = Column(
@@ -64,20 +68,27 @@ class ProductCard extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  Container(
-                    height: 140,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ZadColors.surface,
-                      borderRadius: BorderRadius.circular(ZadRadii.tile),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                    child: RemoteImage(
-                      url: product.imageUrl,
-                      placeholder: const Icon(
-                        Iconsax.gallery,
-                        color: ZadColors.muted,
-                        size: 36,
+                  // Full-bleed product photo filling the rounded card — no grey
+                  // ground, no padding. The surface only reappears behind the
+                  // placeholder when there's no image to show.
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(ZadRadii.tile),
+                    child: SizedBox(
+                      height: 140,
+                      width: double.infinity,
+                      child: RemoteImage(
+                        url: product.imageUrl,
+                        fit: BoxFit.cover,
+                        placeholder: const ColoredBox(
+                          color: ZadColors.surface,
+                          child: Center(
+                            child: Icon(
+                              Iconsax.gallery,
+                              color: ZadColors.muted,
+                              size: 36,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

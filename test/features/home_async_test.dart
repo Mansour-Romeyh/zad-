@@ -267,8 +267,8 @@ void main() {
     expect(callsTo('get_best_items'), 1);
 
     // Fling from the location header text: it sits directly in the outer
-    // (vertical) ListView, clear of the nested non-scrollable category grid
-    // and horizontal best-deal list, so the gesture reliably reaches the
+    // (vertical) ListView, clear of the nested non-scrollable category and
+    // best-deal grids, so the gesture reliably reaches the
     // RefreshIndicator's Scrollable. RefreshIndicator arms once the drag
     // exceeds 25% of its own (viewport) extent, so on this tall test
     // surface the fling distance must clear ~550px — 900px leaves margin.

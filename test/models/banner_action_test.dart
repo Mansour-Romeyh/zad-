@@ -24,6 +24,15 @@ void main() {
     expect((action as BannerUrl).url, 'https://zad.example');
   });
 
+  test('a non-web URL banner is not tappable (only http/https allowed)', () {
+    expect(resolveBannerAction(_banner('URL', 'tel:+9647701234567')),
+        isA<BannerNone>());
+    expect(resolveBannerAction(_banner('URL', 'intent://x#Intent;end')),
+        isA<BannerNone>());
+    expect(resolveBannerAction(_banner('URL', 'market://details?id=x')),
+        isA<BannerNone>());
+  });
+
   test('None type resolves to BannerNone', () {
     expect(resolveBannerAction(_banner('None', 'ignored')), isA<BannerNone>());
   });
@@ -40,5 +49,28 @@ void main() {
   test('value is trimmed before use', () {
     final action = resolveBannerAction(_banner('Item', '  ITEM-9 '));
     expect((action as BannerProduct).itemCode, 'ITEM-9');
+  });
+
+  test('Items type resolves to BannerItemList with codes and banner title', () {
+    final action = resolveBannerAction(
+      const AppBannerModel(
+        title: 'Ramadan Picks',
+        linkType: 'Items',
+        linkItems: ['A', 'B', 'C'],
+      ),
+    );
+    expect(action, isA<BannerItemList>());
+    final list = action as BannerItemList;
+    expect(list.itemCodes, ['A', 'B', 'C']);
+    expect(list.title, 'Ramadan Picks');
+  });
+
+  test('Items type with no items resolves to BannerNone', () {
+    expect(
+      resolveBannerAction(
+        const AppBannerModel(title: 'T', linkType: 'Items', linkItems: []),
+      ),
+      isA<BannerNone>(),
+    );
   });
 }

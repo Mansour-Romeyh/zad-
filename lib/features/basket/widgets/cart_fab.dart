@@ -17,6 +17,21 @@ const double kCartFabClearance = 84;
 double cartFabClearanceOf(BuildContext context) =>
     context.watch<CartStore>().count > 0 ? kCartFabClearance : 0;
 
+/// A bottom spacer reserving room for the [CartFab], isolated into its own
+/// widget so a scroll view can include it **without** subscribing its whole
+/// list/grid to [CartStore]. Only this small box rebuilds when the cart
+/// becomes (non-)empty — the surrounding cards stay put.
+class CartFabClearance extends StatelessWidget {
+  const CartFabClearance({this.extra = 0, super.key});
+
+  /// Fixed padding added below the FAB clearance (e.g. list bottom gap).
+  final double extra;
+
+  @override
+  Widget build(BuildContext context) =>
+      SizedBox(height: extra + cartFabClearanceOf(context));
+}
+
 /// Floating "go to basket" button for browsing routes that live *outside* the
 /// Home shell (the category browser, search, best-deals). Those are pushed
 /// routes with no bottom-nav basket icon, so after the shopper taps add on a

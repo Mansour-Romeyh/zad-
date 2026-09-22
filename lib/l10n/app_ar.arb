@@ -109,6 +109,8 @@
   "categoriesEmpty": "لا توجد فئات بعد",
   "bestItemsEmpty": "لا توجد عناصر بعد",
   "categoryItemsEmpty": "لا توجد عناصر في هذه الفئة بعد",
+  "bannerItemsTitle": "المنتجات",
+  "bannerItemsEmpty": "هذه العناصر غير متوفرة حالياً",
   "unitGram": "غم",
   "unitKg": "كغم",
   "addToBasket": "أضف إلى السلة",

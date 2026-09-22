@@ -13,65 +13,69 @@ GroceryCategory _cat(int i) => GroceryCategory(
   name: 'cat-$i',
 );
 
-// Pins the shelf to a fixed width so column sizing is deterministic: 350dp is
-// a 390dp phone minus the home screen's horizontal padding.
-Widget _shelf(int count) => wrapPage(
+// The shelf as it lives on the home screen: inside a vertical ListView, so the
+// page owns the vertical scroll and the shelf owns its own horizontal one.
+Widget _page(int count) => wrapPage(
   Scaffold(
-    body: Center(
-      child: SizedBox(
-        width: 350,
-        child: CategoryGrid(categories: List.generate(count, _cat)),
-      ),
+    body: ListView(
+      children: [CategoryGrid(categories: List.generate(count, _cat))],
     ),
   ),
 );
 
+// Pin the viewport to a 350dp-wide phone (390dp minus the home screen's
+// horizontal padding) so column sizing is deterministic, and tall enough that
+// the three-row shelf lays out without the page needing to scroll.
+Future<void> _pinViewport(WidgetTester tester) async {
+  await tester.binding.setSurfaceSize(const Size(350, 900));
+  addTearDown(() => tester.binding.setSurfaceSize(null));
+}
+
+// The shelf's own (horizontal) ListView, scoped under CategoryGrid so the
+// enclosing page ListView (an ancestor) is never matched.
+ListView _shelf(WidgetTester tester) => tester.widget<ListView>(
+  find.descendant(of: find.byType(CategoryGrid), matching: find.byType(ListView)),
+);
+
 void main() {
-  testWidgets('eight groups fill the row in two rows without scrolling', (
-    tester,
-  ) async {
-    await tester.pumpWidget(_shelf(8));
+  testWidgets('nine groups fill three rows and three columns without scrolling',
+      (tester) async {
+    await _pinViewport(tester);
+    await tester.pumpWidget(_page(9));
     await tester.pumpAndSettle();
 
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 9; i++) {
       expect(find.text('Category $i'), findsOneWidget);
     }
 
-    // The eight tiles occupy exactly two rows (two distinct top edges).
+    // The nine tiles occupy exactly three rows (three distinct top edges).
     final rows = {
-      for (var i = 0; i < 8; i++)
+      for (var i = 0; i < 9; i++)
         tester.getTopLeft(find.text('Category $i')).dy.roundToDouble(),
     };
-    expect(rows.length, 2);
+    expect(rows.length, 3);
 
-    // Nothing to reveal, so the shelf does not scroll.
-    final scrollable = tester.widget<Scrollable>(find.byType(Scrollable));
-    expect(scrollable.physics, isA<NeverScrollableScrollPhysics>());
+    // It's a horizontal shelf, and with everything in view it does not scroll.
+    expect(_shelf(tester).scrollDirection, Axis.horizontal);
+    expect(_shelf(tester).physics, isA<NeverScrollableScrollPhysics>());
   });
 
-  testWidgets('a ninth group peeks in and scrolls sideways, never a third row', (
-    tester,
-  ) async {
-    await tester.pumpWidget(_shelf(9));
+  testWidgets(
+      'a tenth group adds a fourth column that scrolls sideways, never a fourth row',
+      (tester) async {
+    await _pinViewport(tester);
+    await tester.pumpWidget(_page(10));
     await tester.pumpAndSettle();
 
-    // Still only two rows across the first eight groups — no third row.
+    // Still only three rows across the first nine groups — no fourth row.
     final rows = {
-      for (var i = 0; i < 8; i++)
+      for (var i = 0; i < 9; i++)
         tester.getTopLeft(find.text('Category $i')).dy.roundToDouble(),
     };
-    expect(rows.length, 2);
+    expect(rows.length, 3);
 
-    // The shelf now scrolls horizontally...
-    final scrollableFinder = find.byType(Scrollable);
-    final scrollable = tester.widget<Scrollable>(scrollableFinder);
-    expect(scrollable.axisDirection, AxisDirection.right);
-
-    // ...and the ninth group is already built (peeking at the edge) and fully
-    // reachable by a sideways drag.
-    expect(find.text('Category 8'), findsOneWidget);
-    await tester.drag(scrollableFinder, const Offset(-300, 0));
-    await tester.pumpAndSettle();
-    expect(find.text('Category 8'), findsOneWidget);
+    // The overflow is absorbed sideways: the shelf now scrolls horizontally.
+    expect(_shelf(tester).scrollDirection, Axis.horizontal);
+    expect(_shelf(tester).physics, isA<BouncingScrollPhysics>());
   });
 }

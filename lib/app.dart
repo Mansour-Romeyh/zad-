@@ -39,6 +39,7 @@ import 'features/notifications/notifications_page.dart';
 import 'features/orders/orders_page.dart';
 import 'features/home/widgets/zad_bottom_nav.dart';
 import 'features/onboarding/onboarding_page.dart';
+import 'features/product/banner_items_page.dart';
 import 'features/product/best_deals_page.dart';
 import 'features/product/product_detail_page.dart';
 import 'features/search/search_page.dart';
@@ -205,6 +206,7 @@ class ZadApp extends StatelessWidget {
             '/auth/reset': (_) => const ResetPasswordPage(),
             '/categories': (_) => const CategoryBrowserPage(),
             '/best-deals': (_) => const BestDealsPage(),
+            '/banner-items': (_) => const BannerItemsPage(),
             '/product': (_) => const ProductDetailPage(),
             '/search': (_) => const SearchPage(),
             '/basket': (_) => const HomePage(initialIndex: kBasketNavIndex),

@@ -47,6 +47,17 @@ class CatalogRepository {
     return _pagedProducts(data, pageSize: 20);
   }
 
+  /// ItemCards for an explicit set of codes (multi-item banner tap screen),
+  /// in the given order. The backend returns everything on page 1
+  /// (`has_more: false`), so this slots straight into [PagedItems].
+  Future<PagedItems<Product>> getItemsByCodes(List<String> itemCodes) async {
+    final data = await _client.post(
+      'grocery.api.catalog.get_items_by_codes',
+      data: {'item_codes': itemCodes},
+    );
+    return _pagedProducts(data, pageSize: itemCodes.length);
+  }
+
   Future<Product> getItem(String itemCode) async {
     final data = await _client.post(
       'grocery.api.catalog.get_item',

@@ -124,7 +124,6 @@ class _RailTileState extends State<_RailTile> {
                       ? ZadColors.primary
                       : ZadColors.muted.withValues(alpha: 0.2),
                   borderWidth: selected ? 1.5 : 1,
-                  padding: const EdgeInsets.all(8),
                 ),
               ),
               const SizedBox(height: 8),

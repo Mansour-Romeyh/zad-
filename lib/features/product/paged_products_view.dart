@@ -303,7 +303,7 @@ class _ProductsGridState extends State<_ProductsGrid>
         // Trailing gap, plus room for the floating basket button when it shows
         // so the last row is never hidden behind it.
         SliverToBoxAdapter(
-          child: SizedBox(height: 12 + cartFabClearanceOf(context)),
+          child: const CartFabClearance(extra: 12),
         ),
       ],
     );

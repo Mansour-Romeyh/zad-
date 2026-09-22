@@ -6,13 +6,18 @@ import '../../../core/theme.dart';
 import '../../../core/widgets/remote_image.dart';
 
 /// The shared Item Group image container: a rounded-square tile (radius
-/// [ZadRadii.tile]) holding the group image *contained* with [padding], and an
+/// [ZadRadii.tile]) whose group image *fills* the tile edge-to-edge
+/// ([BoxFit.cover]) and is clipped to the rounded corners, with an
 /// [Iconsax.category] placeholder when the image is missing or fails to load.
 /// Used by both the Home category grid and the category browser's side rail so
 /// the same Item Group renders identically in both. Purely presentational —
 /// each caller supplies the [fillColor]/[borderColor] that contrast with its
 /// own background, and owns its own sizing (e.g. an [AspectRatio]) and any
 /// press/selection animation.
+///
+/// When a [borderColor] is set the image is inset by [borderWidth] and clipped
+/// to the matching inner radius, so a flush, edge-to-edge image never paints
+/// over the (rail-selected) border. With no border it sits truly flush.
 ///
 /// Deliberately a [DecoratedBox], not a [Container]/[AnimatedContainer]: the
 /// rail test asserts exactly one pale-green [Container] (its selected pill), so
@@ -23,7 +28,6 @@ class CategoryTile extends StatelessWidget {
     this.fillColor = ZadColors.surface,
     this.borderColor,
     this.borderWidth = 1,
-    this.padding = const EdgeInsets.all(10),
     super.key,
   });
 
@@ -31,10 +35,12 @@ class CategoryTile extends StatelessWidget {
   final Color fillColor;
   final Color? borderColor;
   final double borderWidth;
-  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
+    // Inset the image by the stroke width only when a border is drawn, so the
+    // border stays visible; otherwise the image is flush to the tile edge.
+    final inset = borderColor == null ? 0.0 : borderWidth;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: fillColor,
@@ -44,10 +50,16 @@ class CategoryTile extends StatelessWidget {
             : Border.all(color: borderColor!, width: borderWidth),
       ),
       child: Padding(
-        padding: padding,
-        child: RemoteImage(
-          url: imageUrl,
-          placeholder: const Icon(Iconsax.category, color: ZadColors.muted),
+        padding: EdgeInsets.all(inset),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(ZadRadii.tile - inset),
+          child: RemoteImage(
+            url: imageUrl,
+            fit: BoxFit.cover,
+            placeholder: const Center(
+              child: Icon(Iconsax.category, color: ZadColors.muted),
+            ),
+          ),
         ),
       ),
     );

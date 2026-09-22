@@ -267,6 +267,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get categoryItemsEmpty => 'لا توجد عناصر في هذه الفئة بعد';
 
   @override
+  String get bannerItemsTitle => 'المنتجات';
+
+  @override
+  String get bannerItemsEmpty => 'هذه العناصر غير متوفرة حالياً';
+
+  @override
   String get unitGram => 'غم';
 
   @override

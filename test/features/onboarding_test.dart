@@ -94,12 +94,17 @@ void main() {
     expect(find.text('مقاضيك بضغطة زر'), findsOneWidget);
     expect(find.text('Buy Groceries Easily with Us'), findsNothing);
 
-    // Two remote slides → the FAB finishes after the second page.
+    // Two remote slides → the FAB finishes after the second page. These slides
+    // carry image URLs, so RemoteImage sits on its (perpetual) loading spinner
+    // while the fake network never resolves — pumpAndSettle would time out on
+    // it. Advance the page/route with bounded pumps instead.
     await tester.tap(find.byIcon(Icons.arrow_forward).last);
-    await tester.pumpAndSettle();
+    await tester.pump(); // kick off the page transition
+    await tester.pump(const Duration(milliseconds: 600)); // let it finish
     expect(find.text('توصيل خلال ساعة'), findsOneWidget);
     await tester.tap(find.byIcon(Icons.arrow_forward).last);
-    await tester.pumpAndSettle();
+    await tester.pump(); // kick off the replace-to-/home navigation
+    await tester.pump(const Duration(milliseconds: 600)); // let the route settle
     expect(find.text('HOME_MARKER'), findsOneWidget);
   });
 

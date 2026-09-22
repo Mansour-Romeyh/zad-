@@ -109,6 +109,8 @@
   "categoriesEmpty": "No categories yet",
   "bestItemsEmpty": "No items yet",
   "categoryItemsEmpty": "No items in this category yet",
+  "bannerItemsTitle": "Products",
+  "bannerItemsEmpty": "These items aren't available right now",
   "unitGram": "g",
   "unitKg": "kg",
   "addToBasket": "Add to Basket",

@@ -17,7 +17,7 @@ import '../basket/basket_page.dart';
 import '../favourites/favourites_tab.dart';
 import '../profile/profile_tab.dart';
 import 'widgets/async_section.dart';
-import 'widgets/best_deal_list.dart';
+import 'widgets/best_deal_grid.dart';
 import 'widgets/cart_fly.dart';
 import 'widgets/category_grid.dart';
 import 'widgets/location_header.dart';
@@ -51,6 +51,10 @@ class _HomePageState extends State<HomePage> {
   /// (fly target + bounce) via [CartFlyScope]. Owned here so its lifecycle
   /// matches the shell.
   final CartFlyController _flyController = CartFlyController();
+
+  /// Safety cap on the best-deal page walk (20 items/page → 2000 items), so a
+  /// backend that never clears `has_more` can't spin the loader forever.
+  static const int _maxBestItemPages = 100;
 
   SectionState<List<GroceryCategory>> _categories =
       const SectionState.loading();
@@ -136,14 +140,22 @@ class _HomePageState extends State<HomePage> {
     final repo = context.read<CatalogRepository>();
     setState(() => _bestItems = const SectionState.loading());
     try {
-      // Paged envelope ({items, page, has_more}); home shows the first
-      // page only.
-      final page = await repo.getBestItems();
+      // The section shows every best-deal item (no See All), so walk the
+      // paged envelope ({items, page, has_more}) to the end, accumulating
+      // all pages. Guard a backend that never clears has_more: stop on an
+      // empty page and cap the walk at _maxBestItemPages.
+      final items = <Product>[];
+      for (var page = 1; page <= _maxBestItemPages; page++) {
+        final envelope = await repo.getBestItems(page: page);
+        if (!mounted) return;
+        items.addAll(envelope.items);
+        if (!envelope.hasMore || envelope.items.isEmpty) break;
+      }
       if (!mounted) return;
       // ItemCard payloads carry `is_favourite` for authed users — seed the
       // hearts (seed-only, never un-favourites).
-      context.read<FavouritesStore>().seed(page.items);
-      setState(() => _bestItems = SectionState.data(page.items));
+      context.read<FavouritesStore>().seed(items);
+      setState(() => _bestItems = SectionState.data(items));
     } catch (e) {
       if (!mounted) return;
       setState(() => _bestItems = SectionState.error(e));
@@ -224,6 +236,8 @@ class _HomePageState extends State<HomePage> {
             padding: hPad,
             child: SectionHeader(
               title: l10n.shopByCategory,
+              titleFontSize: 22,
+              titleFontWeight: FontWeight.bold,
               onSeeAll: () => Navigator.pushNamed(context, '/categories'),
             ),
           ),
@@ -255,26 +269,22 @@ class _HomePageState extends State<HomePage> {
           ],
           Padding(
             padding: hPad,
-            child: SectionHeader(
-              title: l10n.bestDeal,
-              onSeeAll: () => Navigator.pushNamed(context, '/best-deals'),
-            ),
+            // No "See All" — the section now lays out every best-deal item
+            // (all pages) as a downward grid, so there is nothing more to see.
+            child: SectionHeader(title: l10n.bestDeal),
           ),
           const SizedBox(height: 12),
-          AsyncSection<List<Product>>(
-            state: _bestItems,
-            skeleton: const Padding(
-              padding: hPad,
-              child: SectionSkeleton(height: 244),
+          Padding(
+            padding: hPad,
+            child: AsyncSection<List<Product>>(
+              state: _bestItems,
+              skeleton: const SectionSkeleton(height: 244),
+              onRetry: _loadBestItems,
+              isEmpty: (data) => data.isEmpty,
+              emptyBuilder: (context) =>
+                  _EmptyMessage(text: l10n.bestItemsEmpty),
+              builder: (context, data) => BestDealGrid(products: data),
             ),
-            onRetry: _loadBestItems,
-            isEmpty: (data) => data.isEmpty,
-            emptyBuilder: (context) => Padding(
-              padding: hPad,
-              child: _EmptyMessage(text: l10n.bestItemsEmpty),
-            ),
-            builder: (context, data) =>
-                BestDealList(products: data), // full-bleed
           ),
           const SizedBox(height: 16),
         ],

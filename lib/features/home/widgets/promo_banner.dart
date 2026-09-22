@@ -14,6 +14,7 @@ import '../../../core/widgets/zad_snack.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../models/banner_action.dart';
 import '../../category/category_browser_page.dart';
+import '../../product/banner_items_page.dart';
 
 /// Bundled fallback artwork used when a banner record has no image.
 const _bannerPlaceholderImagePath = 'assets/images/banner_products.png';
@@ -149,6 +150,12 @@ class _BannerCard extends StatelessWidget {
           context,
           '/categories',
           arguments: CategoryBrowserArgs(initialGroupId: groupId),
+        );
+      case BannerItemList(:final itemCodes, :final title):
+        Navigator.pushNamed(
+          context,
+          '/banner-items',
+          arguments: BannerItemsArgs(itemCodes, title),
         );
       case BannerUrl(:final url):
         final l10n = AppLocalizations.of(context);
